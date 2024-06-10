@@ -8,8 +8,10 @@ SKOPEO_VERSION="1.5.0"
 yum install -y curl protobuf-compiler libseccomp-devel openssl openssl-devel perl skopeo clang clang-devel
 
 #Install device-mapepr-devel
-wget https://rpmfind.net/linux/centos/8-stream/PowerTools/ppc64le/os/Packages/device-mapper-devel-1.02.181-14.el8.ppc64le.rpm
-yum install -y device-mapper-devel-1.02.181-14.el8.ppc64le.rpm
+#wget https://rpmfind.net/linux/centos/8-stream/PowerTools/ppc64le/os/Packages/device-mapper-devel-1.02.181-14.el8.ppc64le.rpm
+#yum install -y device-mapper-devel-1.02.181-14.el8.ppc64le.rpm
+wget https://www.rpmfind.net/linux/centos-stream/9-stream/CRB/ppc64le/os/Packages/device-mapper-devel-1.02.197-2.el9.ppc64le.rpm
+yum install -y device-mapper-devel-1.02.197-2.el9.ppc64le.rpm
 
 # Install Golang
 curl https://dl.google.com/go/go${GO_VERSION}.linux-ppc64le.tar.gz -o go${GO_VERSION}.linux-ppc64le.tar.gz && \
