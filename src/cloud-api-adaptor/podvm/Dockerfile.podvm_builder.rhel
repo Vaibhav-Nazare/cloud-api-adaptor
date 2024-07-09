@@ -6,7 +6,7 @@
 # Creates a builder container image that should be used to build the Pod VM
 # disk inside a container.
 #
-FROM registry.access.redhat.com/ubi9/ubi:9.2
+FROM registry.access.redhat.com/ubi9/ubi:9.4
 
 ARG ARCH
 ARG PACKER_VERSION
@@ -18,12 +18,12 @@ ARG ACTIVATION_KEY
 ARG YQ_VERSION
 ARG YQ_CHECKSUM
 
-ENV SMDEV_CONTAINER_OFF=1
 ENV ARCH=${ARCH}
 
 # This registering RHEL when building on an unsubscribed system
 # If you are running a UBI container on a registered and subscribed RHEL host, the main RHEL Server repository is enabled inside the standard UBI container
 RUN if [[ -n "${ACTIVATION_KEY}" && -n "${ORG_ID}" ]]; then \
+    rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host; \
     subscription-manager register --org=${ORG_ID} --activationkey=${ACTIVATION_KEY}; \
     fi
     
@@ -68,4 +68,4 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC
     unzip protoc-${PROTOC_VERSION}-linux-${ARCH/s390x/s390_64}.zip -d /usr/local && rm -f protoc-${PROTOC_VERSION}-linux-${ARCH/s390x/s390_64}.zip
 
 WORKDIR /src
-ENV=GOPATH /src
+ENV GOPATH=/src
