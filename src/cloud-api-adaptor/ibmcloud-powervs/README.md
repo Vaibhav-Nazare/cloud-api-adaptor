@@ -35,8 +35,8 @@ wget https://github.com/mikefarah/yq/releases/download/v4.42.1/yq_linux_ppc64le
 chmod +x yq_linux_ppc64le && mv yq_linux_ppc64le /usr/local/bin/yq
 git clone -b main https://github.com/kata-containers/kata-containers.git
 git clone https://github.com/confidential-containers/cloud-api-adaptor.git
-cd cloud-api-adaptor/ibmcloud-powervs/image
-AGENT_POLICY=no SEALED_SECRET=no make build
+cd src/cloud-api-adaptor/ibmcloud-powervs/image
+make build
 ```
 
 > NOTE:
