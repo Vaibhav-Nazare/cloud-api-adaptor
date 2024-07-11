@@ -16,8 +16,6 @@ yum install -y device-mapper-devel-1.02.197-2.el9.ppc64le.rpm
 curl https://dl.google.com/go/go${GO_VERSION}.linux-ppc64le.tar.gz -o go${GO_VERSION}.linux-ppc64le.tar.gz && \
 rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-ppc64le.tar.gz && \
 rm -f go${GO_VERSION}.linux-ppc64le.tar.gz
-export GOPATH=${HOME}/go
-mkdir -p ${GOPATH}/src/github.com
 
 # Install Rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${RUST_VERSION}
