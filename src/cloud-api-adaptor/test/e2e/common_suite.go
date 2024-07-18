@@ -27,7 +27,11 @@ var E2eNamespace = envconf.RandomName("coco-pp-e2e-test", 25)
 // DoTestCreateSimplePod tests a simple peer-pod can be created.
 func DoTestCreateSimplePod(t *testing.T, e env.Environment, assert CloudAssert) {
 	pod := NewBusyboxPodWithName(E2eNamespace, "simple-test")
-	NewTestCase(t, e, "SimplePeerPod", assert, "PodVM is created").WithPod(pod).WithNydusSnapshotter().Run()
+	if isTestOnCrio() {
+		NewTestCase(t, e, "SimplePeerPod", assert, "PodVM is created").WithPod(pod).Run()
+	} else {
+		NewTestCase(t, e, "SimplePeerPod", assert, "PodVM is created").WithPod(pod).WithNydusSnapshotter().Run()
+	}
 }
 
 func DoTestDeleteSimplePod(t *testing.T, e env.Environment, assert CloudAssert) {
@@ -120,7 +124,11 @@ func DoTestCreatePodWithSecret(t *testing.T, e env.Environment, assert CloudAsse
 }
 
 func DoTestCreatePeerPodContainerWithExternalIPAccess(t *testing.T, e env.Environment, assert CloudAssert) {
-	pod := NewBusyboxPod(E2eNamespace)
+	// This test requires a container with the right capability otherwise the following error will be thrown:
+	// / # ping 8.8.8.8
+	// PING 8.8.8.8 (8.8.8.8): 56 data bytes
+	// ping: permission denied (are you root?)
+	pod := NewPrivPod(E2eNamespace, "busybox-priv")
 	testCommands := []TestCommand{
 		{
 			Command:       []string{"ping", "-c", "1", "www.google.com"},
