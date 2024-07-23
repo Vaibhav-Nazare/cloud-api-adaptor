@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GO_VERSION="1.21.12"
-RUST_VERSION="1.72.0"
+RUST_VERSION="1.75.0"
 
 # Install dependencies
 yum install -y curl libseccomp-devel openssl openssl-devel skopeo clang clang-devel
