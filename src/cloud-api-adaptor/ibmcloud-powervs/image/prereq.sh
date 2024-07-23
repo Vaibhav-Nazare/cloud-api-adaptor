@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# FIXME to pickup these values from versions.yaml
 GO_VERSION="1.21.12"
 RUST_VERSION="1.75.0"
 
