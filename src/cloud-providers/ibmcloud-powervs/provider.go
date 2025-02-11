@@ -89,7 +89,7 @@ func (p *ibmcloudPowerVSProvider) CreateInstance(ctx context.Context, podName, s
 	ins := (*pvsInstances)[0]
 	instanceID := *ins.PvmInstanceID
 
-	getctx, cancel := context.WithTimeout(ctx, 150*time.Second)
+	getctx, cancel := context.WithTimeout(ctx, 500*time.Second)
 	defer cancel()
 
 	logger.Printf("Waiting for instance to reach state: ACTIVE")
