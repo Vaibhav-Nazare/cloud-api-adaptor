@@ -14,6 +14,5 @@ yum install -y device-mapper-devel-1.02.202-6.el9.ppc64le.rpm
 
 # Install Golang
 curl https://dl.google.com/go/go${GO_VERSION}.linux-ppc64le.tar.gz -o go${GO_VERSION}.linux-ppc64le.tar.gz && \
-rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-ppc64le.tar.gz && \
+rm -rf /usr/local/go && rm -rf /bin/go && tar -C /bin -xzf go${GO_VERSION}.linux-ppc64le.tar.gz && \
 rm -f go${GO_VERSION}.linux-ppc64le.tar.gz
-export PATH=$PATH:/usr/local/go/bin
