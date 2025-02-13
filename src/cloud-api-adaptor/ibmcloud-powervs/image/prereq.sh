@@ -16,8 +16,11 @@ yum install -y device-mapper-devel-1.02.202-6.el9.ppc64le.rpm
 curl https://dl.google.com/go/go${GO_VERSION}.linux-ppc64le.tar.gz -o go${GO_VERSION}.linux-ppc64le.tar.gz && \
 rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-ppc64le.tar.gz && \
 rm -f go${GO_VERSION}.linux-ppc64le.tar.gz
-echo -e '\n# golang environment variables' >> /etc/profile
-echo 'export GOROOT=/usr/local/go' >> /etc/profile
-echo 'export GOPATH=$HOME/go' >> /etc/profile
-echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> /etc/profile
-source /etc/profile
+
+
+VERSION="1.2.2"
+curl -LO "https://github.com/oras-project/oras/releases/download/v${VERSION}/oras_${VERSION}_linux_ppc64le.tar.gz"
+mkdir -p oras-install/
+tar -zxf oras_${VERSION}_*.tar.gz -C oras-install/
+sudo mv oras-install/oras /usr/local/bin/
+rm -rf oras_${VERSION}_*.tar.gz oras-install/
