@@ -99,12 +99,8 @@ PROCESS_USER_DATA = $(FILES_DIR)/usr/local/bin/process-user-data
 
 BINARIES ?= \
 	$(AGENT_PROTOCOL_FORWARDER) \
-	$(API_SERVER_REST) \
-	$(ATTESTATION_AGENT) \
-	$(CONFIDENTIAL_DATA_HUB) \
 	$(KATA_AGENT) \
-	$(PAUSE) \
-	$(PROCESS_USER_DATA)
+	$(PAUSE)
 
 SKOPEO_SRC ?= skopeo
 SKOPEO_BIN ?= $(SKOPEO_SRC)/bin/skopeo
